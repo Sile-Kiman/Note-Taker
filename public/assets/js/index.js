@@ -4,7 +4,7 @@ var $saveNoteBtn = $(".save-note");
 var $newNoteBtn = $(".new-note");
 var $noteList = $(".list-container .list-group");
 
-const newNote = require("./server")
+//const newNote = require("./server")
 
 // activeNote is used to keep track of the note in the textarea
 var activeNote = {};
