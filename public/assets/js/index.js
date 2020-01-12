@@ -4,12 +4,10 @@ var $saveNoteBtn = $(".save-note");
 var $newNoteBtn = $(".new-note");
 var $noteList = $(".list-container .list-group");
 
-//const newNote = require("./server")
 
 // activeNote is used to keep track of the note in the textarea
 var activeNote = {};
-console.log(activeNote);
-
+ 
 // A function for getting all notes from the db
 var getNotes = function() {
   return $.ajax({
@@ -61,9 +59,6 @@ var handleNoteSave = function() {
   };
   //console.log(newNote)
   saveNote(newNote).then(function(data) {
-    console.log(data)
-    data.push(newNote);
-     
     getAndRenderNotes();
     renderActiveNote();
   });
