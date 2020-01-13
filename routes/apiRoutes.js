@@ -3,8 +3,6 @@
 var noteData = require("../data/noteData.json");
 const fs = require('fs');
 
-
- 
 //Setup API data Routing
 module.exports = function (app) {
 
@@ -13,29 +11,20 @@ module.exports = function (app) {
     var data = fs.readFileSync('data/noteData.json')
     var notes = JSON.parse(data);
     return res.json(notes);
-
   });
 
   // A function for saving a note to the db
   app.post("/api/notes", (req, res) => {
-    var id = 0;
     const newNote = req.body;
-    for (var i = 1; i < noteData.length; i++) {
-      id++;
-
+    var id = 0;
       if (newNote) {
+        id++;
         newNote.id = id;
       }
-      else {
-        return
-      }
-
-    }
     noteData.push(newNote);
-     
-    refreshData(res);
+    refreshData(req, res);
 
-  });
+   });
 
   //Function to delete an item from the database and reload the array
   app.delete("/api/notes:id", (req, res) => {
@@ -46,22 +35,22 @@ module.exports = function (app) {
         const index = noteData.indexOf(noteData[i]);
         noteData.splice(index, 1);
       }
-
+       
     }
-    refreshData(res);
-     
-
+    refreshData(req, res);
   });
+   
 }
 
 //Function to refresh the database after new entry or deletion
 var refreshData = ()=>{
    try{
+   
     var notes = JSON.stringify(noteData);
     return fs.writeFileSync('data/noteData.json', notes)
   }
   catch (err){
     return [];
   }
-
 }
+
