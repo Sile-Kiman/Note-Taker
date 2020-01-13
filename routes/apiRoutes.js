@@ -32,10 +32,7 @@ module.exports = function (app) {
 
     }
     noteData.push(newNote);
-    // var notes = JSON.stringify(noteData);
-    // var data = fs.writeFileSync('data/noteData.json', notes)
- 
-    // return res.json(data);
+     
     refreshData(res);
 
   });
@@ -52,10 +49,7 @@ module.exports = function (app) {
 
     }
     refreshData(res);
-    // var notes = JSON.stringify(noteData);
-    // var data = fs.writeFileSync('data/noteData.json', notes)
- 
-    // return res.json(data);
+     
 
   });
 }
