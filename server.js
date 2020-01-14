@@ -3,7 +3,7 @@
 const app = express();
 const PORT = process.env.PORT || 7000;
 const path = require('path');
-const fs = require('fs');
+ 
 
  
 // Sets up the Express app to handle data parsing
@@ -18,7 +18,6 @@ require("./routes/htmlRoutes")(app);
 
 // =============================================================================
 // LISTENER
-// The below code effectively "starts" our server
 // =============================================================================
 
 app.listen(PORT, function() {

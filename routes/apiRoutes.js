@@ -10,19 +10,22 @@ module.exports = function (app) {
   app.get("/api/notes", (req, res) => {
     var data = fs.readFileSync('data/noteData.json')
     var notes = JSON.parse(data);
-    return res.json(notes);
+    res.json(notes);
   });
 
   // A function for saving a note to the db
   app.post("/api/notes", (req, res) => {
     const newNote = req.body;
-    var id = 0;
+    var id=0;
+    for (var i = 0; i <= noteData.length; i++) {   
       if (newNote) {
         id++;
         newNote.id = id;
       }
+    }  
     noteData.push(newNote);
     refreshData(req, res);
+    res.send({redirect: '/notes'})
 
    });
 
@@ -35,22 +38,22 @@ module.exports = function (app) {
         const index = noteData.indexOf(noteData[i]);
         noteData.splice(index, 1);
       }
-       
     }
     refreshData(req, res);
+    res.send({redirect: '/notes'})
+    
   });
-   
 }
 
 //Function to refresh the database after new entry or deletion
 var refreshData = ()=>{
    try{
-   
     var notes = JSON.stringify(noteData);
     return fs.writeFileSync('data/noteData.json', notes)
+    
   }
   catch (err){
-    return [];
+    return;
   }
 }
 
