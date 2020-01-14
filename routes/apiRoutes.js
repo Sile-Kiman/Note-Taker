@@ -22,6 +22,9 @@ module.exports = function (app) {
         id++;
         newNote.id = id;
       }
+      else{
+        newNote.id = 1
+      }
     }  
     noteData.push(newNote);
     refreshData(req, res);
