@@ -56,7 +56,7 @@ var refreshData = ()=>{
     
   }
   catch (err){
-    return;
+    return err;
   }
 }
 
